@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-deployment
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: project
+  template:
+    metadata:
+      name: project-template
+      labels:
+        app: project
+    spec:
+      containers:
+      - name: project_container
+        image: godspeed/project:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "250Mi"
+          limits:
+            cpu: "300m"
+            memory: "350Mi"
+
