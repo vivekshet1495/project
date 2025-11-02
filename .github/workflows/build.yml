@@ -20,6 +20,39 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Cache Maven Packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: maven-cache
+
     - name: Build with Maven
       run: mvn -B package
+
+    - name: Listing all files
+      run: ls -R target
+
+    - name: Uploading artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-war
+        path: target/*.war
+
+    - name: Listing all files again
+      run: ls -R target
+
+    - name: docker image build
+      run: docker build . -f Dockerfile -t godspeed95/myapp:latest
+
+    - name: List images
+      run: docker images
+
+    - name: Docker login
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Docker push
+      run: docker push godspeed95/myapp:latest
     
