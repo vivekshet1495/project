@@ -1,0 +1,21 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [main, build]
+  schedule:
+  - cron: "0 0 * * 1" # every Monday
+
+jobs:
+  build:
+  - name: checkout code
+    run: actions/checkout@v4
+
+  - name: setup JDK 17
+    run: actions/setup-jdk@v4
+    with:
+      java-version: "17"
+
+  - name: Build with Maven
+    run: mvn -B package
+    
