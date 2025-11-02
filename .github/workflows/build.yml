@@ -12,10 +12,10 @@ jobs:
 
     steps:
     - name: checkout code
-      run: actions/checkout@v4
+      uses: actions/checkout@v4
 
     - name: setup JDK 17
-      run: actions/setup-jdk@v4
+      uses: actions/setup-jdk@v4
       with:
         java-version: '17'
         distribution: 'temurin'
