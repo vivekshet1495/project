@@ -22,4 +22,19 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package
+
+    - name: Listing all files
+      run: ls -R target
+
+    - name: Uploading artifacts
+      uses: actions/upload-artifacts@v4
+
+    - name: Listing all files again
+      run: ls -R target
+
+    - name: docker image build
+      run: docker build . -f Dockerfile -t godspeed95/myapp:latest
+
+    - name: List images
+      run: docker images
     
