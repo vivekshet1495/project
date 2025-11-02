@@ -28,6 +28,9 @@ jobs:
 
     - name: Uploading artifacts
       uses: actions/upload-artifact@v4
+      with:
+        name: app-war
+        path: target/*.war
 
     - name: Listing all files again
       run: ls -R target
