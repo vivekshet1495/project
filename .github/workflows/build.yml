@@ -27,7 +27,7 @@ jobs:
       run: ls -R target
 
     - name: Uploading artifacts
-      uses: actions/upload-artifacts@v4
+      uses: actions/upload-artifact@v4
 
     - name: Listing all files again
       run: ls -R target
